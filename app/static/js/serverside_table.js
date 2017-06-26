@@ -11,10 +11,10 @@ $(document).ready(function () {
     bjQueryUI: true,
     sAjaxSource: '/tables/serverside_table',
     columns: [
-      {"data": "A"},
-      {"data": "B"},
-      {"data": "C"},
-      {"data": "D"},
+      {"data": "Column A"},
+      {"data": "Column B"},
+      {"data": "Column C"},
+      {"data": "Column D"}
     ]
   });
 });

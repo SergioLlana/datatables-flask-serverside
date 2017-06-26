@@ -88,7 +88,7 @@ class ServerSideTable(object):
             return False
 
         if self.request_values.get('sSearch', ""):
-            return [row for row in data if self.check_row(row)]
+            return [row for row in data if check_row(row)]
         else:
             return data
 

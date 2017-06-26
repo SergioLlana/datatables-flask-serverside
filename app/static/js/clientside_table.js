@@ -5,7 +5,7 @@
 $(document).ready(function () {
   $.get('/tables/clientside_table', function (data) {
     $('#clientside_table').DataTable({
-      data: data,
+      data: data.data,
       paging: true,
       dom: 'frtipB',
       columns: [
