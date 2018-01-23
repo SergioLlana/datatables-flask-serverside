@@ -143,7 +143,7 @@ class ServerSideTable(object):
         start = int(self.request_values['iDisplayStart'])
         length = int(self.request_values['iDisplayLength'])
 
-        # if search results return only one page
+        # if search returns only one page
         if len(data) <= length:
             # display only one page
             return data[start:]
