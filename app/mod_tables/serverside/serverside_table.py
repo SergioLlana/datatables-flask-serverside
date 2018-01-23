@@ -143,14 +143,18 @@ class ServerSideTable(object):
         start = int(self.request_values['iDisplayStart'])
         length = int(self.request_values['iDisplayLength'])
 
+        # if search results return only one page
         if len(data) <= length:
+            # display only one page
             return data[start:]
         else:
             limit = -len(data) + start + length
             if limit < 0:
+                # display pagination
                 return data[start:limit]
             else:
-                return data[start]
+                # display last page of pagination
+                return data[start:]
 
     def output_result(self):
         '''
