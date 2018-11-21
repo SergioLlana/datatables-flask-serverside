@@ -133,7 +133,7 @@ class ServerSideTable(object):
         def requires_pagination():
             ''' Check if the table is going to be paginated '''
             if self.request_values['iDisplayStart'] != "":
-                if self.request_values['iDisplayLength'] != -1:
+                if int(self.request_values['iDisplayLength']) != -1:
                     return True
             return False
 
