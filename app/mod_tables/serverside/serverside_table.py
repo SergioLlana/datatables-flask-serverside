@@ -107,14 +107,16 @@ class ServerSideTable(object):
             ''' Maps the 'desc' and 'asc' words to True or False. '''
             return True if str_direction == 'desc' else False
 
-        if (self.request_values['iSortCol_0'] != "") and \
-           (int(self.request_values['iSortingCols']) > 0):
-            column_number = int(self.request_values['iSortCol_0'])
-            column_name = self.columns[column_number]['column_name']
-            sort_direction = self.request_values['sSortDir_0']
-            return sorted(data,
-                          key=lambda x: x[column_name],
-                          reverse=is_reverse(sort_direction))
+        if (self.request_values['iSortCol_0'] != "") and (int(self.request_values['iSortingCols']) > 0):
+            for i in range(0, int(self.request_values['iSortingCols'])):
+                column_number = int(self.request_values['iSortCol_' + str(i)])
+                column_name = self.columns[column_number]['column_name']
+                sort_direction = self.request_values['sSortDir_' + str(i)]
+                data = sorted(data,
+                              key=lambda x: x[column_name],
+                              reverse=is_reverse(sort_direction))
+
+            return data
         else:
             return data
 
