@@ -112,8 +112,15 @@ class ServerSideTable(object):
                 column_number = int(self.request_values['iSortCol_' + str(i)])
                 column_name = self.columns[column_number]['column_name']
                 sort_direction = self.request_values['sSortDir_' + str(i)]
-                data = sorted(data,
+                # When string is compared to int/float, catch error and
+                # instead convert all values to string first
+                try:
+                    data = sorted(data,
                               key=lambda x: x[column_name],
+                              reverse=is_reverse(sort_direction))
+                except TypeError:
+                    data = sorted(data,
+                              key=lambda x: str(x[column_name]),
                               reverse=is_reverse(sort_direction))
 
             return data
